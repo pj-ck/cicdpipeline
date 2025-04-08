@@ -5,8 +5,8 @@ import requests
 import sys
 
 # Constants
-VERSION = VERSION = os.getenv("VERSION", "1.0.3")  # Must match manifest.json
-XPI_FILE_PATH = os.path.expanduser("~/Desktop/my-ext.xpi")
+VERSION = os.getenv("VERSION", "1.0.3")  # Must match manifest.json
+XPI_FILE_PATH = os.getenv("XPI_FILE_PATH", "my-ext.xpi")  # Now uses file in current dir
 ADDON_SLUG = "new-add"  # Replace with your actual addon slug
 
 AMO_API_URL = "https://addons.mozilla.org/api/v5/addons"
@@ -102,8 +102,13 @@ try:
         print("Status Code:", version_response.status_code)
         print("Response:", version_response.text)
 
+except FileNotFoundError as fnf_error:
+    print(f"❌ File not found: {XPI_FILE_PATH}")
+    sys.exit(1)
+
 except requests.exceptions.RequestException as e:
     print(f"❌ An error occurred: {e}")
     if 'upload_response' in locals():
         print("Status Code:", upload_response.status_code)
         print("Response:", upload_response.text)
+    sys.exit(1)
