@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "name": "New add",
+  "version": "1.0.6",
+  "description": "A browser tool.",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "permissions": ["storage"],
+  "browser_action": {
+    "default_title": "Click Me",
+    "default_icon": "icon.png"
+  },
+  "icons": {
+    "48": "icon.png"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{4240815d-bea6-4793-9cc4-1fef1e021474}",
+      "strict_min_version": "79.0"
+    }
+  }
+}
