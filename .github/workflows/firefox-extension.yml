@@ -18,6 +18,9 @@ jobs:
       with:
         python-version: '3.x'
 
+    - name: Install dependencies
+      run: pip install PyJWT requests
+
     - name: Bump Version (Optional)
       run: python3 bump_version.py
       continue-on-error: true  # skip if you don’t have it
